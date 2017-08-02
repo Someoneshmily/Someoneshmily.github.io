@@ -1,0 +1,5 @@
+{{object.keywords}}
+{{object.title}}
+{{object.summray}}
+{{object.category}}
+{{object.content}}

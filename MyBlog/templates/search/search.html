@@ -1,0 +1,63 @@
+{%extends 'base.html'%}
+
+{%block body%}
+{%block head%}
+<style>
+	.h4{
+		float: right;
+		margin-top: 90px;
+	}
+	.sou{
+		float: right;
+		color: #fcf8e3;
+	}
+	.sear{
+		background: #044d39;
+	}
+	.search{
+		color: #000;
+	}
+</style>
+{%endblock head%}
+<!-- contact and experience -->
+<section class="container">
+	<div class="row">
+
+		<div class="col-md-12 col-sm-12">
+			<div class="experience">
+				<form method='get' action="/search/" target="_blank" class="sou">
+		 　　     	<input type="text" class="search" name="q" value="" placeholder="查找"><input type="submit" class="sear" value="搜索">
+			 	</form>
+				{% for item in page%}
+				 <div id="dele{{single.id}}">
+
+
+					<div class="experience-content">
+						<h6 class="white">{{item.object.title}}</h6>
+						<!--<h7 class="experience-title accent">{{item.object.summray}}</h7>-->
+						<p class="education-description">{{item.object.content}}</p>
+						<!--<h5>{{item.object.category}}</h5><span></span>-->
+						<!--<h5>{{item.object.keywords}}</h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+						<!--<b><a href="javascript:del({{item.object.id}});">删除</a></b>-->
+						<!--<b><a href="javascript:edit({{item.object.id}});">修改</a></b>-->
+						<!--<h4 class="h4"><a href="/myblog/findAll/">more>></a></h4>-->
+					</div>
+                 {%empty%}
+                    <b>啥也没找到</b>
+				 {%endfor%}
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</section>
+{%endblock body%}
+
+{%for pindex in page.paginator.page_range%}
+    {%if pindex == page.number%}
+        {{pindex}}&nbsp;&nbsp;
+    {%else%}
+        <a href="?q={{query}}&amp;page={{pindex}}">{{pindex}}</a>&nbsp;&nbsp;
+    {%endif%}
+{%endfor%}

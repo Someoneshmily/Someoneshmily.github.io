@@ -1,0 +1,104 @@
+{%extends 'base.html'%}
+
+{%block head%}
+<style>
+    .experience {
+        background: #ffffff;
+        color: #f5f5f5;
+    }
+    input, textarea, select{
+        /*background: #044d39;*/
+        margin:5px 5px;
+    }
+    form{
+        /*margin: 0 auto;*/
+        width:80%;
+        color: #000000;
+    }
+    h5,h7{
+        margin-left:5px ;
+        display: inline-block;
+    }
+    .btn{
+        float: right;
+        width:250px;
+        margin-top:-40px;
+    }
+    .btn1{
+        border:1px solid #CFCFCF;
+        background: #CFCFCF;
+        width:90px;
+        height: 35px;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 30px;
+
+    }
+
+    a{
+        width:100%;
+        height: 100%;
+        text-align: center;
+        line-height: 35px;
+        font-size: 18px;
+        color: #000000;
+    }
+
+</style>
+    <script>
+        $(function () {
+            $('.btn2').click(function () {
+                content = $('.content').val();
+                if(content){
+                    $.get('/myblog/create_msg/', {"content":content}, function (data) {
+                        if(data.ok==1){
+                            alert('留言成功！');
+                            location.href = '/myblog/leave_msg/'
+                        }else{
+                            alert('留言失败！');
+                            return false;
+                        }
+                    });
+                }else {
+                    alert('所属入内容不能为空，请重新输入！');
+                    return false;
+
+                }
+
+            });
+
+         $('.cancel').click(function () {
+             location.href = '/myblog/';
+         });
+        });
+
+
+
+    </script>
+
+{%endblock head%}
+
+{%block body%}
+<section class="container">
+	<div class="row">
+		<div class="col-md-12 col-sm-12">
+			<div class="experience">
+                <form action="/myblog/">
+                    {%csrf_token%}
+                    <div class="experience-content">
+                        <h3>留言</h3>
+                        <textarea name="content"  class="content" cols="100" rows="10" placeholder="请输入内容"></textarea><br>
+                        <br><br>
+                        <div class="btn">
+                            <h7 class="btn1 cancel"><a href="/myblog/" class="qx">返回</a></h7>
+                            <h7 class="btn1 btn2"><a href="javascript:;" class="et">确定</a></h7>
+                        </div>
+
+                    </div>
+                </form>
+
+			</div>
+		</div>
+	</div>
+</section>
+{%endblock body%}

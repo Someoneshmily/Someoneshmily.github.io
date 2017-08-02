@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+<!-- contact and experience -->
+
+{%block body%}
+<section class="container">
+	<div class="row">
+
+		<!--{%if exist|default:'0' == '0'%}-->
+		<!--<div class="col-md-12 col-sm-12">-->
+			<!--<div class="experience">-->
+				<!--<form method='get' action="/search/" target="_blank" class="sou">-->
+		 <!--　　     <input type="text" class="search" name="q" value="" placeholder="查找"><input type="submit" class="sear" value="搜索">-->
+			 	<!--</form>-->
+				<!--{% for single in content_list%}-->
+				 <!--<div id="dele{{single.id}}">-->
+
+					<!--<div class="experience-content">-->
+						<!--<h6 class="white">{{single.title}}</h6>-->
+						<!--{{single.editTime}}<br>-->
+						<!--&lt;!&ndash;<h7 class="experience-title accent">{{single.summray}}</h7>&ndash;&gt;-->
+						<!--<p class="education-description">{{single.content}}</p>-->
+						<!--&lt;!&ndash;<h5>{{single.category}}</h5><span></span>&ndash;&gt;-->
+						<!--&lt;!&ndash;<h5>{{single.keywords}}</h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+						<!--<b><a href="javascript:del({{single.id}});">删除</a></b>-->
+						<!--<b><a href="javascript:edit({{single.id}});">修改</a></b>-->
+
+					<!--</div>-->
+				 <!--{%endfor%}-->
+				<!--</div>-->
+				<!--<h4 class="h4"><a href="/myblog/findAll/">more>></a></h4>-->
+		<!--</div>-->
+		<!--{%endif%}-->
+		<div class="col-md-12 col-sm-12">
+			<h3 class="white">留言板</h3>
+
+			{%if leninfo|default:'0' == '0'%}
+			<div class="experience">
+				{% for content in content_list%}
+					<div class="experience-content">
+						{{content.editTime}}<br>
+						<h5>{{forloop.counter}}. {{content.leave_msg}}</h5>
+						<!--<b><a href="javascript:del({{content.id}});">删除</a></b>-->
+						<!--<b><a href="javascript:edit({{content.id}});">修改</a></b>-->
+					</div>
+				 {%endfor%}
+			</div>
+			{%endif%}
+
+		</div>
+
+	</div>
+</section>
+{%endblock body%}

@@ -1,0 +1,73 @@
+{%extends 'base.html'%}
+{%block head%}
+<style>
+
+</style>
+{%endblock head%}
+
+{%block body%}
+
+<!-- education and languages -->
+<section class="container">
+	<div class="row">
+		<div class="col-md-8 col-sm-12">
+			<div class="education">
+				<h2 class="white">Education</h2>
+					<div class="education-content">
+						<h4 class="education-title accent">Guangxi</h4>
+							<div class="education-school">
+								<h5>Undergraduate</h5><span></span>
+								<h5>September 2013 - July 2017</h5>
+							</div>
+						<p class ="education-description">I graduated from Beijing University of Agriculture with a major in Agriculture and Forestry of Economics Management. During the four year of my university, I began to be keen on Python language learning.</p>
+					</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-12">
+			<div class="languages">
+				<h2>Hobby</h2>
+					<ul>
+						<li>travel with somebody</li>
+						<li>singing</li>
+						<li>exercise</li>
+						<li>cooking</li>
+					</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- contact and experience -->
+<section class="container">
+	<div class="row">
+
+		{%if exist|default:'0' == '0'%}
+		<div class="col-md-12 col-sm-12">
+			<div class="experience">
+				<form method='get' action="/search/" target="_blank" class="sou">
+		 　　     <input type="text" class="search" name="q" value="" placeholder="查找"><input type="submit" class="sear" value="搜索">
+			 	</form>
+				{% for single in content_list%}
+				 <div id="dele{{single.id}}">
+
+					<div class="experience-content">
+						<h6 class="white">{{single.title}}</h6>
+						{{single.editTime}}<br>
+						<!--<h7 class="experience-title accent">{{single.summray}}</h7>-->
+						<p class="education-description">{{single.content}}</p>
+						<!--<h5>{{single.category}}</h5><span></span>-->
+						<!--&lt;!&ndash;<h5>{{single.keywords}}</h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+						<!--<b><a href="javascript:del({{single.id}});">删除</a></b>-->
+						<!--<b><a href="javascript:edit({{single.id}});">修改</a></b>-->
+
+					</div>
+				 {%endfor%}
+				</div>
+
+				<!--<h4 class="h4"><a href="/myblog/findAll/">more>></a></h4>-->
+			</div>
+		</div>
+		{%endif%}
+	</div>
+</section>
+{%endblock body%}
